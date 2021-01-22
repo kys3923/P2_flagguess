@@ -6,6 +6,8 @@ const flash = require('connect-flash');
 const helmet = require('helmet');
 const passport = require('./config/ppConfig');
 const isLoggedIn = require('./middleware/isLoggedIn')
+const path = require('path');
+const db = require('./models');
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -49,6 +51,10 @@ app.get('/profile', isLoggedIn, (req, res) => {
 
 app.use('/auth', require('./routes/auth'));
 // app.use('/dino', isLoggedIn, require('./routes/dinos)); <- if whole route is authorized
+// 10Q route
+app.use('/games', require('./routes/games'));
+// endurance route
+app.use('/scores', require('./routes/scores'));
 
 var server = app.listen(process.env.PORT || 8000, ()=> console.log(`🎧You're listening to the smooth sounds of port ${process.env.PORT || 8000}🎧`));
 
