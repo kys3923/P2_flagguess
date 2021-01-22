@@ -1,5 +1,8 @@
 ### GuessthatFlag
-- Entertainment of flag guessing website.
+When it comes to recognize a flag of a country, it could be confusing enough humiliating at the moment you don't want to show your common knowledge. With this website, user can spend a little of their time, and improve recognizing a country from a flag.
+
+This site will offer following;
+
 - Users will get a score of guessing the flag.
 - The flag questionaire will be based on free API, [rest countries](http://restcountries.eu "rest countries")
 - Website will provide streak score and overall score with scoreboard
