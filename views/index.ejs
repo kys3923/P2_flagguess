@@ -1,6 +1,11 @@
 <h2>Home Page</h2>
 <div class="container">
     <%= currentUser ? currentUser.name : 'There is no user' %>
-    <div class="10Qbox"></div>
+    <div class="10Qbox">
+        <form method="POST" action="/10q">
+            <input hidden type="text" name="name" value="">
+            <button class="gameselectbtn" type="submit">Play</button>
+        </form>
+    </div>
     <div class="enduranceBox"></div>
 </div>

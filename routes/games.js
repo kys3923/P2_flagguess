@@ -14,7 +14,7 @@ router.get('/10q', isLoggedIn, (req, res) => {
 // make questions
     // listen answer to determin correct/wrong
     // if wrong answer, show correct answer
-    // record current score
+    // db to record current score
 // next question
 // after 10q, show score page for 10q
 
@@ -29,7 +29,7 @@ router.get('/endurance', isLoggedIn, (req, res) => {
     // listen answer to determine correct/wrong
     // if wrong answer, show correct answer
     // record current score
-    // after wrong answer input, show socre page for endurance
+    // after wrong answer input, show score page for endurance
 // next question
 
 module.exports = router;
