@@ -13,6 +13,9 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.user.hasMany(models.score)
+      models.user.hasMany(models.scoreboard)
+      models.user.hasMany(models.comment)
     }
 
     validPassword(typedPassword) {

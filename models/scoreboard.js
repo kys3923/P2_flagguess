@@ -11,6 +11,8 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
+      models.scoreboard.belongsTo(models.user)
+      models.scoreboard.belongsTo(models.score)
     }
   };
   scoreboard.init({
