@@ -9,10 +9,10 @@ This site will offer following;
 
 ### GuessthatFlag task list
 
-- [ ] overall game flow
-- [ ] Tech Stack
-- [ ] WireFrames
-- [ ] module install
+- [x] overall game flow
+- [x] Tech Stack
+- [x] WireFrames
+- [x] module install
 - [ ] layers
 - [ ] database
 - [ ] CSS
@@ -53,6 +53,7 @@ Fixbug & Final Delivery | 01/28/12
 ### Stretch Goals
 - Creat a map that show where the answered country is located
 - Medal given when user reached a certain score
+- Add name country from capital option
 
 ### Roadblocks
 - Unexpected bug fix during when writing codes in express and sequelize
