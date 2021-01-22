@@ -25,9 +25,13 @@
 `npm` `express` `photoshop` `illustrator` `nodeJS` `axios` `ejs` `sequelize` `postgres`
 
 ### Planning Images
+Database Planning
 ![a](public/img/Blankdiagram_Page_1.png)
+Overall flow
 ![b](public/img/Blankdiagram_Page_2.png)
+Route Planning
 ![c](public/img/Blankdiagram_Page_3.png)
+Skeleton Website
 ![d](public/img/basicPlan.png)
 
 
