@@ -1,13 +1,36 @@
 <p>game demo page</p>
+<!-- need data to be an questionArray -->
+<% function randomFlag(restCountry) { %>
+    <%  let m = restCountry.length, t, i; %>
+     <% while (i < m) { %>
+      <%    i = Math.floor(Math.random() * m--); %>
+      <%    t = restCountry[m]; %>
+      <%    restCountry[m] = restCountry[i]; %>
+      <%    restCountry[i] = t; %>
+      <% } %>
+      <% return restCountry; %>
+  <% } %>
+  <% console.log(randomFlag(restCountry), "this is shuffled array"); %>
+  
+  <% function pickedCountry() { %>
+      <% let correctAnswer = Math.floor(Math.random() * restCountry.length) %>
+      <% let i = correctAnswer; %>
+      <% console.log(restCountry[i].flag, "this is picked one of shuffled array"); %>
+  <% } %>
+
+<%= pickedCountry() %>
+
+
 <% restCountry.forEach(function(restCountry) { %>
-
-<div class="flagHolder">
-    <ul>
-        <li><%= restCountry.name %></li>
-    </ul>
-</div>
-<% }) %>
-
+    <div class="flagHolder">
+        <ul>
+            <li><%= restCountry.name %></li>
+        </ul>
+    </div>
+    <div class="questionBox">
+        
+    </div>
+    <% }) %>
 <!-- things to display after a game
 name
 capital

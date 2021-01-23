@@ -4,7 +4,8 @@ const db = require('../models');
 const passport = require('../config/ppConfig');
 const isLoggedIn = require('../middleware/isLoggedIn');
 const axios = require('axios');
-
+const { pickedCountry } = require('../public/js/game');
+let game = require('../public/js/game.js')
 
 // demo game
 // router.get('/demo', (req, res) => {
@@ -17,7 +18,7 @@ router.get('/demo', (req, res) => {
         // console.log(restCountry);
         let restName = restCountry.data
         console.log(restName);
-        res.render('games/gamedemo', {restCountry: restCountry.data })
+        res.render('games/gamedemo', {restCountry: restCountry.data, game: game })
         // res.send(restCountry.data);
     })
 });
