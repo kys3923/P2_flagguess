@@ -1,11 +1,22 @@
 <h2>Home Page</h2>
 <div class="container">
     <%= currentUser ? currentUser.name : 'There is no user' %>
-    <div class="10Qbox">
-        <form method="POST" action="/10q">
-            <input hidden type="text" name="name" value="">
-            <button class="gameselectbtn" type="submit">Play</button>
-        </form>
-    </div>
-    <div class="enduranceBox"></div>
+    <% if (!currentUser) { %>
+        <div class="selectgamebox">
+            <p><a href="games/demo">demo game</a></p>
+        </div>
+        <div class="10Qbox">
+            <p><a href="games/10q">10 Questions</a></p>
+        </div>
+        <div class="enduranceBox">
+            <p><a href="games/">Endurance</a></p>
+        </div>
+    <% } else { %>
+        <div class="10Qbox">
+            <p><a href="games/10q">10 Questions</a></p>
+        </div>
+        <div class="enduranceBox">
+            <p><a href="games/endurance">Endurance</a></p>
+        </div>
+    <% }; %>
 </div>
