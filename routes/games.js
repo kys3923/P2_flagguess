@@ -7,13 +7,21 @@ const axios = require('axios');
 
 
 // demo game
+// router.get('/demo', (req, res) => {
+//     res.render('games/gamedemo.ejs')
+// })
+
 router.get('/demo', (req, res) => {
     axios.get('https://restcountries.eu/rest/v2/all')
     .then(restCountry => {
-        console.log(restCountry);
-        res.render('games/gamedemo.ejs', {restCountry: restCountry});
+        // console.log(restCountry);
+        let restName = restCountry.data
+        console.log(restName);
+        res.render('games/gamedemo', {restCountry: restCountry.data })
+        // res.send(restCountry.data);
     })
 });
+
 // get country flag from api
     // choose random array and country name
 // make questions
