@@ -16,10 +16,12 @@
       <% let correctAnswer = Math.floor(Math.random() * restCountry.length) %>
       <% let i = correctAnswer; %>
       <% console.log(restCountry[i].flag, "this is picked one of shuffled array"); %>
+      <div class="imagebox">
+          <svg width="100px" height="100px" xmlns="<%= restCountry[i].flag %>"></svg>
+      </div>
   <% } %>
 
 <%= pickedCountry() %>
-
 
 <% restCountry.forEach(function(restCountry) { %>
     <div class="flagHolder">
