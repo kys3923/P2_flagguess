@@ -2,7 +2,7 @@
 <!-- need data to be an questionArray -->
 <% function randomFlag(restCountry) { %>
     <%  let m = restCountry.length, t, i; %>
-     <% while (i < m) { %>
+     <% while (m) { %>
       <%    i = Math.floor(Math.random() * m--); %>
       <%    t = restCountry[m]; %>
       <%    restCountry[m] = restCountry[i]; %>
@@ -10,14 +10,13 @@
       <% } %>
       <% return restCountry; %>
   <% } %>
-  <% console.log(randomFlag(restCountry), "this is shuffled array"); %>
   
   <% function pickedCountry() { %>
       <% let correctAnswer = Math.floor(Math.random() * restCountry.length) %>
       <% let i = correctAnswer; %>
-      <% console.log(restCountry[i].flag, "this is picked one of shuffled array"); %>
+      <% console.log(restCountry[i].name, "this is randomly picked one of shuffled array"); %>
       <div class="imagebox">
-          <svg width="100px" height="100px" xmlns="<%= restCountry[i].flag %>"></svg>
+          <img src="../../public/img/flagimages/<%= restCountry[i].alpha3Code %>.png">
       </div>
   <% } %>
 
