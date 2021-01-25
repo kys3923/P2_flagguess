@@ -19,7 +19,55 @@ function pickedCountry() {
     let correctAnswer = Math.floor(Math.random() * questionArray.length)
     let i = correctAnswer;
     console.log(questionArray[i], "this is picked one of shuffled array");
+    // make new question array
     let  newQuestionArray = [];
+
+    // take correctAnswer push to new questionArray
+    newQuestionArray.push(questionArray[i]);
+    console.log(newQuestionArray, "correctAnswer added to new array");
+
+    // take randomQuestions push to new questionArray
+    console.log(questionArray[0], questionArray[1], questionArray[2]);
+    console.log(newQuestionArray, "first check");
+    if (questionArray[0] !== questionArray[i]) {
+        newQuestionArray.push(questionArray[0])
+    };
+    if (questionArray[1] !== questionArray[i]) {
+        newQuestionArray.push(questionArray[1])
+    };
+    if (questionArray[2] !== questionArray[i]) {
+        newQuestionArray.push(questionArray[2])
+    };
+    if (questionArray[3] !== questionArray[i]) {
+        newQuestionArray.push(questionArray[3])
+    };
+    if (questionArray[4] !== questionArray[i]) {
+        newQuestionArray.push(questionArray[4])
+    };
+    if (newQuestionArray.length = 6) {
+        newQuestionArray.pop()
+    };
+
+    console.log(newQuestionArray, "double make sure");
+
+    // shuffle new questionArray
+    function randomFlag2(newQuestionArray) {
+        let m = newQuestionArray.length, t, i;
+        while (0 !== m) {
+            i = Math.floor(Math.random() * m);
+            console.log(i, "random integer?????")
+            m -= 1;
+            t = newQuestionArray[m];
+            newQuestionArray[m] = newQuestionArray[i];
+            newQuestionArray[i] = t;
+        }
+        return newQuestionArray;
+    }
+    randomFlag2(newQuestionArray);
+    console.log(newQuestionArray, "triple make sure")
+    console.log(questionArray[i], "is it correct answer?")
+
+    // list new questionArray
 
 }
 
@@ -67,6 +115,7 @@ function questionStart() {
             // display score
             // record current score
             // give buttons to redirect to personal score, back to home, rankings
+            
     // if endurance, if get any wrong answer entered, display score
         // display current streaks of question
             // display goes away
