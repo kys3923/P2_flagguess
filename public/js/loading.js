@@ -7,3 +7,14 @@ document.onreadystatechange = function() {
         document.querySelector('body').style.visibility = 'visible';
     }
 };
+
+
+let modal = document.getElementById('myModal');
+let span = document.querySelector('.close');
+
+window.onload = function() {
+    modal.style.display = 'block'
+}
+span.addEventListener('click', function() {
+    modal.style.display = 'none'}    
+);

@@ -1,37 +1,97 @@
+<script src="/js/game.js" defer></script>
+
 <p>game demo page</p>
 <!-- need data to be an questionArray -->
 <% function randomFlag(restCountry) { %>
     <%  let m = restCountry.length, t, i; %>
-     <% while (m) { %>
-      <%    i = Math.floor(Math.random() * m--); %>
-      <%    t = restCountry[m]; %>
-      <%    restCountry[m] = restCountry[i]; %>
-      <%    restCountry[i] = t; %>
-      <% } %>
-      <% return restCountry; %>
-  <% } %>
-  
-  <% function pickedCountry() { %>
-      <% let correctAnswer = Math.floor(Math.random() * restCountry.length) %>
-      <% let i = correctAnswer; %>
-      <% console.log(restCountry[i].name, "this is randomly picked one of shuffled array"); %>
-      <div class="imagebox">
-          <img src="/img/flagimages/<%= restCountry[i].alpha3Code %>.png">
-      </div>
-  <% } %>
+    <% while (m) { %>
+    <%    i = Math.floor(Math.random() * m--); %>
+    <%    t = restCountry[m]; %>
+    <%    restCountry[m] = restCountry[i]; %>
+    <%    restCountry[i] = t; %>
+    <% } %>
+    <% return restCountry; %>
+<% } %>
 
+<% function pickedCountry() { %>
+    <% let correctAnswer = Math.floor(Math.random() * restCountry.length) %>
+    <% let i = correctAnswer; %>
+    <% let sampleQuestion1 = Math.floor(Math.random() * restCountry.length) %>
+    <% let q1 = sampleQuestion1 %> 
+    <% let sampleQuestion2 = Math.floor(Math.random() * restCountry.length) %>
+    <% let q2 = sampleQuestion2 %>
+    <% let sampleQuestion3 = Math.floor(Math.random() * restCountry.length) %>
+    <% let q3 = sampleQuestion3 %>
+    <% let sampleQuestion4 = Math.floor(Math.random() * restCountry.length) %>
+    <% let q4 = sampleQuestion4 %>
+    <% let sampleQuestion5 = Math.floor(Math.random() * restCountry.length) %>
+    <% let q5 = sampleQuestion5 %>
+<!-- putting display override and set timer -->
+    <!-- modals  -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Some text in the Modal..</p>
+        </div>
+
+    </div>
+
+<!-- adding question image -->
+    <div class="imagebox">
+        <img id="imagequestion" src="/img/flagimages/<%= restCountry[i].alpha3Code %>.png">
+    </div>
+
+    <% let  newQuestionArray = []; %>
+    <% newQuestionArray.push(restCountry[i]); %>
+
+    <% if (restCountry[q1] !== restCountry[i]) { %>
+    <%  newQuestionArray.push(restCountry[q1]) %>
+    <% }; %>
+    <% if (restCountry[q2] !== restCountry[i]) { %>
+    <%  newQuestionArray.push(restCountry[q2]) %>
+    <% }; %>
+    <% if (restCountry[q3] !== restCountry[i]) { %>
+    <%  newQuestionArray.push(restCountry[q3]) %>
+    <% }; %>
+    <% if (restCountry[q4] !== restCountry[i]) { %>
+    <%  newQuestionArray.push(restCountry[q4]) %>
+    <% }; %>
+    <% if (restCountry[q5] !== restCountry[i]) { %>
+    <%  newQuestionArray.push(restCountry[q5]) %>
+    <% }; %>
+    <% if (newQuestionArray.length = 6) { %>
+    <%  newQuestionArray.pop() %>
+    <% }; %>
+
+    <% function randomFlag2(newQuestionArray) { %>
+    <% let m = newQuestionArray.length, t, i; %>
+    <% while (0 !== m) { %>
+        <%  i = Math.floor(Math.random() * m); %>
+        <%  m -= 1; %>
+        <%  t = newQuestionArray[m]; %>
+        <%  newQuestionArray[m] = newQuestionArray[i]; %>
+        <%  newQuestionArray[i] = t; %>
+        <% } %>
+    <% return newQuestionArray; %>
+    <% } %>
+    <% randomFlag2(newQuestionArray); %>
+
+<!-- placing questions -->
+    <div class="flagHolder">
+        <form action="/games" method="POST">
+        <% newQuestionArray.forEach(function(restCountry) { %>
+            <input type="submit" class="answerbox" name="answer" value="<%= restCountry.name %>"> 
+            <% }) %>
+        </form>
+    </div>
+        <div class="questionBox">
+            
+        </div>
+<% } %>
 <%= pickedCountry() %>
 
-<% restCountry.forEach(function(restCountry) { %>
-    <div class="flagHolder">
-        <ul>
-            <li><%= restCountry.name %></li>
-        </ul>
-    </div>
-    <div class="questionBox">
-        
-    </div>
-    <% }) %>
 <!-- things to display after a game
 name
 capital

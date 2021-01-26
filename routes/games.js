@@ -17,7 +17,6 @@ router.get('/demo', (req, res) => {
     .then(restCountry => {
         // console.log(restCountry);
         let restName = restCountry.data
-        console.log(restName);
         res.render('games/gamedemo', {restCountry: restCountry.data, game: game })
         // res.send(restCountry.data);
     })
