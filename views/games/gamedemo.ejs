@@ -1,5 +1,3 @@
-<script src="/js/game.js" defer></script>
-
 <p>game demo page</p>
 <!-- need data to be an questionArray -->
 <% function randomFlag(restCountry) { %>
@@ -38,11 +36,23 @@
 
     </div>
 
+    <!-- Set timer and initial score -->
+   
+    <div class="timer">
+        <P> Seconds left</P>
+        <p id="timeLeft">10</p>
+    </div>
+
+    <div class="score">
+        <p>points</p>
+        <p id="scoreThisRound">100</p>
+    </div>
+
 <!-- adding question image -->
     <div class="imagebox">
         <img id="imagequestion" src="/img/flagimages/<%= restCountry[i].alpha3Code %>.png">
     </div>
-
+    <% console.log(restCountry[i], "before push") %>
     <% let  newQuestionArray = []; %>
     <% newQuestionArray.push(restCountry[i]); %>
 
@@ -64,6 +74,7 @@
     <% if (newQuestionArray.length = 6) { %>
     <%  newQuestionArray.pop() %>
     <% }; %>
+    <% let correctAnswerHere = restCountry[i] %>
 
     <% function randomFlag2(newQuestionArray) { %>
     <% let m = newQuestionArray.length, t, i; %>
@@ -77,25 +88,51 @@
     <% return newQuestionArray; %>
     <% } %>
     <% randomFlag2(newQuestionArray); %>
-
+    
+    <% console.log(correctAnswerHere.name, "after push, shufle") %>
 <!-- placing questions -->
     <div class="flagHolder">
-        <form action="/games" method="POST">
-        <% newQuestionArray.forEach(function(restCountry) { %>
-            <input type="submit" class="answerbox" name="answer" value="<%= restCountry.name %>"> 
+        <form>
+        <% newQuestionArray.forEach(newQuestion => { %>
+            <% console.log(correctAnswerHere.name, "=========answer after forEach") %>
+            <% console.log(newQuestion.name, "================after forEach, newQuestion") %>
+            <% if (newQuestion.name == correctAnswerHere.name) { %>
+                <input type="submit" class="answerbox" id="correctanswer" value="<%= correctAnswerHere.name %>"> 
+                <% console.log(correctAnswerHere.name, "===============after if statement") %>
+            <% } else { %>
+                <input type="submit" class="answerbox" id="wronganswer" name="answer" value="<%= newQuestion.name %>"> 
+            <% } %>
             <% }) %>
         </form>
     </div>
-        <div class="questionBox">
-            
-        </div>
+    
 <% } %>
 <%= pickedCountry() %>
 
 <!-- things to display after a game
+
+
 name
 capital
 region
 population
 nativeName
 timezones -->
+
+<div id="modalAfterGame" class="modal">
+
+    <!-- Modal content -->
+    <div class="modal-content">
+        <p>your score is</p>
+        <p id="resultScore">0</p>
+
+        <p>play more game after sign up</p>
+        <form action="/" method='GET'>
+            <a href="/"><input type="button" id="modalHome" class="answerbox" value="home"></a>
+        </form>
+        <form action="/auth/signup" method='GET'>
+            <a href="/auth/signup"><input type="button" id="modalsignUp" class="answerbox" value="sign up"></a>
+        </form>
+    </div>
+
+</div>

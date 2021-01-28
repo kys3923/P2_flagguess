@@ -2,6 +2,23 @@
 <div class="container">
     <%= currentUser ? currentUser.name : 'There is no user' %>
     <% if (!currentUser) { %>
+        
+        
+        <% let i = Math.floor(Math.random() * restCountry.length) %>
+        
+        <div class="imagebox">
+            <img id="imagequestion" src="/img/flagimages/<%= restCountry[i].alpha3Code %>.png">
+        </div>
+        <div class="countryinfo">
+            <p>name: <%= restCountry[i].name %></p>
+            <p>capital: <% restCountry[i].capital %></p>
+            <p>region: <%= restCountry[i].region %></p>
+            <p>population: <%= restCountry[i].population %></p>
+            <p>Native Name: <%= restCountry[i].nativeName %></p>
+            <p>Timezone: <%= restCountry[i].timezones %></p>
+
+        </div>
+
         <div class="selectgamebox">
             <p><a href="games/demo">demo game</a></p>
         </div>

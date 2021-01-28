@@ -5,7 +5,8 @@ const session = require('express-session');
 const flash = require('connect-flash');
 const helmet = require('helmet');
 const passport = require('./config/ppConfig');
-const isLoggedIn = require('./middleware/isLoggedIn')
+const isLoggedIn = require('./middleware/isLoggedIn');
+const axios = require('axios');
 const path = require('path');
 const db = require('./models');
 const app = express();
@@ -32,7 +33,6 @@ app.use(flash());
 // Write custom middleware to access the user on every response
 app.use((req, res, next) => {
   let alerts = req.flash();
-  console.log(alerts);
   res.locals.alerts = alerts;
   res.locals.currentUser = req.user;
   next();
@@ -41,7 +41,14 @@ app.use((req, res, next) => {
 
 app.get('/', (req, res) => {
   req.session.testVar = 'fire!!!'
-  res.render('index');
+  axios.get('https://restcountries.eu/rest/v2/all')
+    .then(restCountry => {
+        // console.log(restCountry.data);
+        let restName = restCountry.data
+        res.render('index', {restCountry: restCountry.data})
+        // res.send(restCountry.data);
+    })
+  // res.render('index');
 });
 
 app.get('/profile', isLoggedIn, (req, res) => {

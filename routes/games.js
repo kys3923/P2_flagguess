@@ -7,10 +7,8 @@ const axios = require('axios');
 const { pickedCountry } = require('../public/js/game');
 let game = require('../public/js/game.js')
 
+
 // demo game
-// router.get('/demo', (req, res) => {
-//     res.render('games/gamedemo.ejs')
-// })
 
 router.get('/demo', (req, res) => {
     axios.get('https://restcountries.eu/rest/v2/all')
@@ -21,7 +19,24 @@ router.get('/demo', (req, res) => {
         // res.send(restCountry.data);
     })
 });
+// demo game after, redirects
+router.post('/', (req, res) => {
+    res.redirect('/')
+});
 
+router.post('/signup', (req, res) => {
+    res.redirect('/auth/signup')
+});
+
+router.post('/score', (req, res) => {
+    db.score.findOrCreate({
+        // score: req.body.score
+        // q10score:
+        // endscore:
+        // sterak:
+    })
+    console.log("data got to the /score")
+});
 // get country flag from api
     // choose random array and country name
 // make questions
@@ -34,7 +49,13 @@ router.get('/demo', (req, res) => {
 
 // 10q games
 router.get('/10q', isLoggedIn, (req, res) => {
-    res.render('games/gameindex.ejs');
+    axios.get('https://restcountries.eu/rest/v2/all')
+    .then(restCountry => {
+        // console.log(restCountry);
+        let restName = restCountry.data
+        res.render('games/gameindex', {restCountry: restCountry.data, game: game })
+        // res.send(restCountry.data);
+    })
 });
 // get country flag from api
     // choose random array and country name
@@ -48,7 +69,13 @@ router.get('/10q', isLoggedIn, (req, res) => {
 
 // endurance games
 router.get('/endurance', isLoggedIn, (req, res) => {
-    res.render('games/gameindex.ejs');
+    axios.get('https://restcountries.eu/rest/v2/all')
+    .then(restCountry => {
+        // console.log(restCountry);
+        let restName = restCountry.data
+        res.render('games/endurance', {restCountry: restCountry.data, game: game })
+        // res.send(restCountry.data);
+    })
 });
 // get country flag from api
     // choose random array and country name
