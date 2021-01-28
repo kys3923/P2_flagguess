@@ -24,17 +24,20 @@ let totalScore = 0;
 
 window.onload = function() {
     modal.style.display = 'block';
+    gameRound += 1;
     modalAfter.style.display = 'none';
+    
+    parseInt(myStorage.getItem('roundNum'));
+    let storedScore = parseInt(myStorage.getItem('scoreTotal'));
+    console.log(typeof storedScore, "why isn't this changing??????");
 
-    if (gameRound == 0) {
-        gameRound += 1;
-    } else {
-        let storageRound = myStorage.getItem('roundNum');
-        let storageScore = myStorage.getItem('scoreTotal');
-        gameRound = storageRound;
-        totalScore = storageScore;
+    if (myStorage.getItem('roundNum')) {
+        gameRound = myStorage.getItem('roundNum');
     }
 
+    if (myStorage.getItem('scoreTotal')) {
+        totalScore = storedScore;
+    }
     document.querySelector('#thisRound').innerText = gameRound;
     document.querySelector('#scoreTotalRound').innerText = totalScore + 'pts';
     document.querySelector('#scoreThisRound').innerText = score + 'pts';
@@ -44,10 +47,6 @@ span.addEventListener('click', function() {
     modal.style.display = 'none';
     timerTrigger();
 });
-
-
-console.log(time, "this is time");
-console.log(score, "this is score");
 
 let timer;
 
@@ -101,7 +100,7 @@ let finButton = document.querySelector('#modalFin');
 
 function review() {
     console.log(totalScore, "review triggered, showing total score")
-    document.querySelector('#resultScore').value = totalScore;
+    document.querySelector('#resultScore').value = score;
     document.querySelector('#currentRound').value = gameRound;
     document.querySelector('#resultTotalScore').value = totalScore;
     document.querySelector('#streakNum').value = gameRound;
@@ -117,12 +116,9 @@ function review() {
 
 // q10, click Next Round
 
-
-let round = 0;
-
 nextButton.addEventListener('click', next => {
-    round++;
-    myStorage.setItem('roundNum', round);
+    gameRound++;
+    myStorage.setItem('roundNum', gameRound);
     myStorage.setItem('scoreTotal', totalScore);
 
     console.log("next button clicked")
@@ -130,9 +126,7 @@ nextButton.addEventListener('click', next => {
     console.log(gameRound, "round at next button")
 });
 
-
-// span.addEventListener('click', function() {
-//     modal.style.display = 'none';
-//     timerTrigger();
-// }); //todo 
-
+let homeButton = document.querySelector('#modalHome');
+homeButton.addEventListener('click', clear => {
+    myStorage.clear();
+})

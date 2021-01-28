@@ -30,7 +30,6 @@ router.post('/signup', (req, res) => {
 
 router.post('/score', isLoggedIn, (req, res) => {
     console.log(typeof req.user.dataValues.id, "============== currentUser")
-    console.log(req.body, 'req.body ====================')
     db.score.findOrCreate({
         where: {
             round: req.body.round,
