@@ -37,15 +37,24 @@
     </div>
 
     <!-- Set timer and initial score -->
+    <div class="round">
+        <p>this round is..</p>
+        <p id="thisRound"></p>
+    </div>
    
     <div class="timer">
         <P> Seconds left</P>
-        <p id="timeLeft">10</p>
+        <p id="timeLeft"></p>
+    </div>
+
+    <div class="totalScore">
+        <p>points in total Round</p>
+        <p id="scoreTotalRound"></p>
     </div>
 
     <div class="score">
-        <p>points</p>
-        <p id="scoreThisRound">100</p>
+        <p>points in this Round</p>
+        <p id="scoreThisRound"></p>
     </div>
 
 <!-- adding question image -->
@@ -94,8 +103,6 @@
     <div class="flagHolder">
         <form>
         <% newQuestionArray.forEach(newQuestion => { %>
-            <% console.log(correctAnswerHere.name, "=========answer after forEach") %>
-            <% console.log(newQuestion.name, "================after forEach, newQuestion") %>
             <% if (newQuestion.name == correctAnswerHere.name) { %>
                 <input type="submit" class="answerbox" id="correctanswer" value="<%= correctAnswerHere.name %>"> 
                 <% console.log(correctAnswerHere.name, "===============after if statement") %>
@@ -123,14 +130,22 @@ timezones -->
 
     <!-- Modal content -->
     <div class="modal-content">
-        <p>your score is</p>
-        <p id="resultScore">0</p>
 
-        <p>play more game after sign up</p>
-        <form action="/" method='GET'>
-            <a href="/"><input type="button" id="modalHome" class="answerbox" value="home"></a>
+        <form>
+        <p>This round is</p>
+        <input class="modalemptybox" id="currentRound" name="round" value=""></p> <!-- example -->
+        <p>your score in this round is</p>
+        <input class="modalemptybox" id="resultScore" name="score" value=""></p>
+        <p>your score in total is</p>
+        <input class="modalemptybox" id="resultTotalScore" name="endScore" value=""></p>
+        <input hidden name="userId" value="">
+        <input hidden name="streak" value="">
+        <a href="/"><input type="button" id="modalHome" class="answerbox" value="Home"></a>
+            <!-- hidden , name = variable name,  -->
+            <!-- need to redirect to current page -->
+            <input hidden type="submit" id="modalsignUp" class="answerbox" value="Next Round">
         </form>
-        <form action="/auth/signup" method='GET'>
+        <form>
             <a href="/auth/signup"><input type="button" id="modalsignUp" class="answerbox" value="sign up"></a>
         </form>
     </div>

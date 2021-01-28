@@ -25,7 +25,7 @@ window.onload = function() {
     modal.style.display = 'block';
     modalAfter.style.display = 'none';
     gameRound += 1;
-    document.querySelector('#thisRound').innerText = gameRound + '/ 10';
+    document.querySelector('#thisRound').innerText = gameRound;
     document.querySelector('#scoreTotalRound').innerText = totalScore + 'pts';
     document.querySelector('#scoreThisRound').innerText = score + 'pts';
 }
@@ -55,8 +55,7 @@ function minusTime() {
         document.querySelector('#timeLeft').innerHTML = time;
     } else if (time == 0) {
         clearTimer();
-        score = document.querySelector('#scoreThisRound').innerText;
-        totalScore = totalScore + document.querySelector('#scoreThisRound').innerText;
+        totalScore = totalScore + score;
         review();
     };
 };
@@ -79,7 +78,7 @@ for (var i = 0 ; i < wrongAnswerInput.length; i++) {
 correctAnswerInput.addEventListener('click', next => {
     next.preventDefault();
     clearInterval(timer)
-    totalScore = totalScore + document.querySelector('#scoreThisRound').innerText;
+    totalScore = totalScore + score;
     review();
 })
 
@@ -90,11 +89,32 @@ console.log(resultScore, "result score????")
 function review() {
     console.log(totalScore, "review triggered, showing total score")
     document.querySelector('#resultScore').value = totalScore;
-    document.querySelector('#currentRound').value = thisRound;
-    document.querySelector('#resultTotalScore').value =
+    document.querySelector('#currentRound').value = gameRound;
+    document.querySelector('#resultTotalScore').value = totalScore;
     modalAfter.style.display = 'block'
 };
 
+// q10, click Next Round
+
+let nextButton = document.querySelector('#modalNext');
+let finButton = document.querySelector('#modalFin');
+
+nextButton.addEventListener('click', next => {
+    if (gameRound != 10) {
+        nextButton.style.display = 'block';
+        finButton.style.display = 'none';
+        return totalScore;
+        window.location.reload();
+    } else if (gameRound = 10) {
+        nextButton.style.display = 'none';
+        finButton.style.display = 'block';
+        
+    }
+})
 
 
+span.addEventListener('click', function() {
+    modal.style.display = 'none';
+    timerTrigger();
+});
 

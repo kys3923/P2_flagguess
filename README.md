@@ -1,5 +1,5 @@
 ### GuessthatFlag
-When it comes to recognize a flag of a country, it could be confusing enough humiliating at the moment you don't want to show your common knowledge. With this website, user can spend a little of their time, and improve recognizing a country from a flag.
+When it comes to recognize a flag of a country, it could be confusing enough to be humiliated at the moment you don't want to show your common knowledge. With this website, user can spend a little of their time, and improve recognizing a country from a flag.
 
 This site will offer following;
 
