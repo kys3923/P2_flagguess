@@ -19,7 +19,8 @@ module.exports = (sequelize, DataTypes) => {
     userId: DataTypes.INTEGER,
     q10score: DataTypes.INTEGER,
     endscore: DataTypes.INTEGER,
-    streak: DataTypes.INTEGER
+    streak: DataTypes.INTEGER,
+    round: DataTypes.INTEGER
   }, {
     sequelize,
     modelName: 'score',

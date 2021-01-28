@@ -28,14 +28,23 @@ router.post('/signup', (req, res) => {
     res.redirect('/auth/signup')
 });
 
-router.post('/score', (req, res) => {
+router.post('/score', isLoggedIn, (req, res) => {
+    console.log(typeof req.user.dataValues.id, "============== currentUser")
+    console.log(req.body, 'req.body ====================')
     db.score.findOrCreate({
-        // score: req.body.score
-        // q10score:
-        // endscore:
-        // sterak:
+        where: {
+            round: req.body.round,
+            q10score: req.body.score,
+            endscore: req.body.endScore,
+            streak: req.body.streak,
+            userId: req.user.dataValues.id
+        }
+    }).then(score => {
+        res.redirect('/games/10q')
+    }).catch(err => {
+        console.log(err, "at catch score==================")
     })
-    console.log("data got to the /score")
+    console.log("=========================data got to the /score")
 });
 // get country flag from api
     // choose random array and country name

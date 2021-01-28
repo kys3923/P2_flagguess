@@ -114,10 +114,9 @@
 <%= pickedCountry() %>
 
 <div id="modalAfterGame" class="modal">
-
     <!-- Modal content -->
     <div class="modal-content">
-        <form action="/games/score" method='POST'>
+        <form action="/games/score" method="POST">
         <p>This round is</p>
         <input class="modalemptybox" id="currentRound" name="round" value=""></p> <!-- example -->
         <p>your score in this round is</p>
@@ -125,13 +124,16 @@
         <p>your score in total is</p>
         <input class="modalemptybox" id="resultTotalScore" name="endScore" value=""></p>
         <input hidden name="userId" value="">
-        <input hidden name="streak" value="">
+        <input hidden name="streak" id="streakNum" value="">
         <a href="/"><input type="button" id="modalHome" class="answerbox" value="Home"></a>
             <!-- hidden , name = variable name,  -->
             <!-- need to redirect to current page -->
         
             <input type="submit" id="modalNext" class="answerbox" value="Next Round">
-            <input type="submit" id="madalFin" class="answerbox" value="Result Page">
+        </form>
+        <form action="/game/result" method="POST">
+            
+            <input type="submit" id="modalFin" class="answerbox" value="Result Page">
         </form>
     </div>
 
