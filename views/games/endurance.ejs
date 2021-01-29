@@ -1,1 +1,157 @@
 <p>endurance page</p>
+<!-- need data to be an questionArray -->
+<% function randomFlag(restCountry) { %>
+    <%  let m = restCountry.length, t, i; %>
+    <% while (m) { %>
+    <%    i = Math.floor(Math.random() * m--); %>
+    <%    t = restCountry[m]; %>
+    <%    restCountry[m] = restCountry[i]; %>
+    <%    restCountry[i] = t; %>
+    <% } %>
+    <% return restCountry; %>
+<% } %>
+
+<% function pickedCountry() { %>
+    <% let correctAnswer = Math.floor(Math.random() * restCountry.length) %>
+    <% let i = correctAnswer; %>
+    <% let sampleQuestion1 = Math.floor(Math.random() * restCountry.length) %>
+    <% let q1 = sampleQuestion1 %> 
+    <% let sampleQuestion2 = Math.floor(Math.random() * restCountry.length) %>
+    <% let q2 = sampleQuestion2 %>
+    <% let sampleQuestion3 = Math.floor(Math.random() * restCountry.length) %>
+    <% let q3 = sampleQuestion3 %>
+    <% let sampleQuestion4 = Math.floor(Math.random() * restCountry.length) %>
+    <% let q4 = sampleQuestion4 %>
+    <% let sampleQuestion5 = Math.floor(Math.random() * restCountry.length) %>
+    <% let q5 = sampleQuestion5 %>
+<!-- putting display override and set timer -->
+    <!-- modals  -->
+    <div id="myModal" class="modal">
+
+        <!-- Modal content -->
+        <div class="modal-content">
+            <span class="close">&times;</span>
+            <p>Some text in the Modal..</p>
+        </div>
+
+    </div>
+
+    <!-- Set timer and initial score -->
+    <div class="round">
+        <p>this round is..</p>
+        <p id="thisRound"></p>
+    </div>
+   
+    <div class="timer">
+        <P> Seconds left</P>
+        <p id="timeLeft"></p>
+    </div>
+
+    <div class="totalScore">
+        <p>points in total Round</p>
+        <p id="scoreTotalRound"></p>
+    </div>
+
+    <div class="score">
+        <p>points in this Round</p>
+        <p id="scoreThisRound"></p>
+    </div>
+
+<!-- adding question image -->
+    <div class="imagebox">
+        <img id="imagequestion" src="/img/flagimages/<%= restCountry[i].alpha3Code %>.png">
+    </div>
+    <% let  newQuestionArray = []; %>
+    <% newQuestionArray.push(restCountry[i]); %>
+
+    <% if (restCountry[q1] !== restCountry[i]) {
+        newQuestionArray.push(restCountry[q1]) 
+    }; %>
+    <% if (restCountry[q2] !== restCountry[i]) {
+        newQuestionArray.push(restCountry[q2])
+    }; %>
+    <% if (restCountry[q3] !== restCountry[i]) { %>
+    <%  newQuestionArray.push(restCountry[q3]) %>
+    <% }; %>
+    <% if (restCountry[q4] !== restCountry[i]) { %>
+    <%  newQuestionArray.push(restCountry[q4]) %>
+    <% }; %>
+    <% if (restCountry[q5] !== restCountry[i]) { %>
+    <%  newQuestionArray.push(restCountry[q5]) %>
+    <% }; %>
+    <% if (newQuestionArray.length = 6) { %>
+    <%  newQuestionArray.pop() %>
+    <% }; %>
+    <% let correctAnswerHere = restCountry[i] %>
+
+    <% function randomFlag2(newQuestionArray) { %>
+    <% let m = newQuestionArray.length, t, i; %>
+    <% while (0 !== m) { %>
+        <%  i = Math.floor(Math.random() * m); %>
+        <%  m -= 1; %>
+        <%  t = newQuestionArray[m]; %>
+        <%  newQuestionArray[m] = newQuestionArray[i]; %>
+        <%  newQuestionArray[i] = t; %>
+        <% } %>
+    <% return newQuestionArray; %>
+    <% } %>
+    <% randomFlag2(newQuestionArray); %>
+    
+<!-- placing questions -->
+    <div id="correctAnswer"></div>
+    <div id="wronganswer"></div>
+    <!-- decoy div for q10 question arrays -->
+    <div class="flagHolder">
+        <form>
+        <% newQuestionArray.forEach(newQuestion => { %>
+            <% if (newQuestion.name == correctAnswerHere.name) { %>
+                <input type="submit" class="answerbox" id="correctanswerend" value="<%= correctAnswerHere.name %>"> 
+            <% } else { %>
+                <input type="submit" class="answerbox" id="wronganswerend" name="answer" value="<%= newQuestion.name %>"> 
+            <% } %>
+            <% }) %>
+        </form>
+    </div>
+    
+<% } %>
+<%= pickedCountry() %>
+
+<div id="modalAfterGame" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <form action="/games/score" method="POST">
+        <p>This round is</p>
+        <input class="modalemptybox" id="currentRound" name="round" value="">
+        <p>your score in this round is</p>
+        <input class="modalemptybox" id="resultScore" name="score" value="">
+        <p>your score in total is</p>
+        <input class="modalemptybox" id="resultTotalScore" name="endScore" value="">
+        <input hidden name="userId" value="">
+        <input hidden name="streak" id="streakNum" value="">
+        <a href="/"><input type="button" id="modalHome" class="answerbox" value="Home"></a>
+            <input type="submit" id="modalNext" class="answerbox" value="Next Round">
+        </form>
+        <form action="/game/result" method="POST">
+            <input type="submit" id="modalFin" class="answerbox" value="Result Page">
+        </form>
+    </div>
+
+</div>
+
+<div id="modalEnduranceEndGame" class="modal">
+    <!-- Modal content -->
+    <div class="modal-content">
+        <form action="/games/score" method="POST">
+        <p>Your streak is</p>
+        <input class="modalemptybox" id="currentRound" name="round" value=""></p>
+        <input hidden class="modalemptybox" id="resultScore" name="score" value=""></p>
+        <input hidden class="modalemptybox" id="resultTotalScore" name="endScore" value=""></p>
+        <input hidden name="userId" value="">
+        <input hidden name="streak" id="streakNum" value="">
+        <input class="modalemptybox" id="currentRound" name="round" value=""></p>
+        <a href="/"><input type="button" id="modalHome" class="answerbox" value="Home"></a>
+        </form>
+        
+    </div>
+
+</div>

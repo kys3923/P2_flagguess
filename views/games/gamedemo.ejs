@@ -61,16 +61,15 @@
     <div class="imagebox">
         <img id="imagequestion" src="/img/flagimages/<%= restCountry[i].alpha3Code %>.png">
     </div>
-    <% console.log(restCountry[i], "before push") %>
     <% let  newQuestionArray = []; %>
     <% newQuestionArray.push(restCountry[i]); %>
 
-    <% if (restCountry[q1] !== restCountry[i]) { %>
-    <%  newQuestionArray.push(restCountry[q1]) %>
-    <% }; %>
-    <% if (restCountry[q2] !== restCountry[i]) { %>
-    <%  newQuestionArray.push(restCountry[q2]) %>
-    <% }; %>
+    <% if (restCountry[q1] !== restCountry[i]) {
+        newQuestionArray.push(restCountry[q1]) 
+    }; %>
+    <% if (restCountry[q2] !== restCountry[i]) {
+        newQuestionArray.push(restCountry[q2])
+    }; %>
     <% if (restCountry[q3] !== restCountry[i]) { %>
     <%  newQuestionArray.push(restCountry[q3]) %>
     <% }; %>
@@ -98,14 +97,12 @@
     <% } %>
     <% randomFlag2(newQuestionArray); %>
     
-    <% console.log(correctAnswerHere.name, "after push, shufle") %>
 <!-- placing questions -->
     <div class="flagHolder">
         <form>
         <% newQuestionArray.forEach(newQuestion => { %>
             <% if (newQuestion.name == correctAnswerHere.name) { %>
                 <input type="submit" class="answerbox" id="correctanswer" value="<%= correctAnswerHere.name %>"> 
-                <% console.log(correctAnswerHere.name, "===============after if statement") %>
             <% } else { %>
                 <input type="submit" class="answerbox" id="wronganswer" name="answer" value="<%= newQuestion.name %>"> 
             <% } %>
@@ -116,21 +113,9 @@
 <% } %>
 <%= pickedCountry() %>
 
-<!-- things to display after a game
-
-
-name
-capital
-region
-population
-nativeName
-timezones -->
-
 <div id="modalAfterGame" class="modal">
-
     <!-- Modal content -->
     <div class="modal-content">
-
         <form>
         <p>This round is</p>
         <input class="modalemptybox" id="currentRound" name="round" value=""></p> <!-- example -->
@@ -139,14 +124,16 @@ timezones -->
         <p>your score in total is</p>
         <input class="modalemptybox" id="resultTotalScore" name="endScore" value=""></p>
         <input hidden name="userId" value="">
-        <input hidden name="streak" value="">
+        <input hidden name="streak" id="streakNum" value="">
         <a href="/"><input type="button" id="modalHome" class="answerbox" value="Home"></a>
             <!-- hidden , name = variable name,  -->
             <!-- need to redirect to current page -->
-            <input hidden type="submit" id="modalsignUp" class="answerbox" value="Next Round">
+            <a href="/auth/signup">Sign Up</button></a>
         </form>
         <form>
-            <a href="/auth/signup"><input type="button" id="modalsignUp" class="answerbox" value="sign up"></a>
+            
+            <p id="modalNext" class="answerbox" value="Sign Up">
+            <input type="submit" id="modalFin" class="answerbox" value="Result Page">
         </form>
     </div>
 

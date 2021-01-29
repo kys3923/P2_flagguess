@@ -8,6 +8,8 @@ document.onreadystatechange = function() {
         document.querySelector('body').style.visibility = 'visible';
     }
 };
+
+// ============================================= Game Logic
 const myStorage = window.sessionStorage;
 
 // setting up modal intro // game demo
@@ -22,10 +24,27 @@ let time = 11;
 let score = 100;
 let totalScore = 0;
 
+let modalAfter = document.getElementById('modalAfterGame');
+let resultScore = document.querySelector('#resultScore').innerText;
+
+let nextButton = document.querySelector('#modalNext');
+let finButton = document.querySelector('#modalFin');
+
+
+let wrongAnswerInput = document.querySelectorAll('#wronganswer');
+let correctAnswerInput = document.querySelector('#correctanswer');
+
+// let wrongAnswerInputEnd = document.querySelectorAll('#wronganswerend');
+// let correctAnswerInputEnd = document.querySelector('#correctanswerend');
+
+// let modalEndEnd = document.getElementById('modalEnduranceEndGame');
+
+
 window.onload = function() {
     modal.style.display = 'block';
-    gameRound += 1;
     modalAfter.style.display = 'none';
+    // modalEndEnd.style.display = 'none';
+    gameRound += 1;
     
     parseInt(myStorage.getItem('roundNum'));
     let storedScore = parseInt(myStorage.getItem('scoreTotal'));
@@ -69,9 +88,6 @@ function minusTime() {
     };
 };
 
-let wrongAnswerInput = document.querySelectorAll('#wronganswer');
-let correctAnswerInput = document.querySelector('#correctanswer');
-// let totalScore = document.querySelector('#resultScore').innerText;
 
 
 function scoreCal(e) {
@@ -84,6 +100,13 @@ for (var i = 0 ; i < wrongAnswerInput.length; i++) {
     wrongAnswerInput[i].addEventListener('click', scoreCal); 
 }
 
+// for (var i = 0; i < wrongAnswerInputEnd.length; i++) {
+//     wrongAnswerInputEnd[i].addEventListener('click', event => {
+//         event.preventDefault();
+//         endGame();
+//     });
+// }
+
 correctAnswerInput.addEventListener('click', next => {
     next.preventDefault();
     clearTimer();
@@ -91,12 +114,14 @@ correctAnswerInput.addEventListener('click', next => {
     review();
 })
 
-let modalAfter = document.getElementById('modalAfterGame');
-let resultScore = document.querySelector('#resultScore').innerText;
-console.log(resultScore, "result score????")
+// correctAnswerInputEnd.addEventListener('click', next => {
+//     next.preventDefault();
+//     clearTimer();
+//     totalScore = totalScore + score;
+//     reviewEnd();
+// })
 
-let nextButton = document.querySelector('#modalNext');
-let finButton = document.querySelector('#modalFin');
+
 
 function review() {
     console.log(totalScore, "review triggered, showing total score")
@@ -114,6 +139,16 @@ function review() {
     }
 };
 
+// function reviewEnd() {
+//     console.log(totalScore, "review triggered, showing total score")
+//     document.querySelector('#resultScore').value = score;
+//     document.querySelector('#currentRound').value = gameRound;
+//     document.querySelector('#resultTotalScore').value = totalScore;
+//     document.querySelector('#streakNum').value = gameRound;
+//     modalAfter.style.display = 'block'
+//     nextButton.style.display = "block";
+// };
+
 // q10, click Next Round
 
 nextButton.addEventListener('click', next => {
@@ -130,3 +165,15 @@ let homeButton = document.querySelector('#modalHome');
 homeButton.addEventListener('click', clear => {
     myStorage.clear();
 })
+
+// let signupButton = document.querySelector('#signup');
+// signupButton.addEventListener('click', e => {
+//     e.preventDefault()
+// })
+
+
+
+// function endGame() {
+//     modalEndEnd.style.display = 'block';
+//     document.querySelector('#currentRound').value = gameRound - 1;
+// }
