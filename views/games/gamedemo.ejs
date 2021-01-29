@@ -1,62 +1,69 @@
-<p>game demo page</p>
-<!-- need data to be an questionArray -->
-<% function randomFlag(restCountry) { %>
-    <%  let m = restCountry.length, t, i; %>
-    <% while (m) { %>
-    <%    i = Math.floor(Math.random() * m--); %>
-    <%    t = restCountry[m]; %>
-    <%    restCountry[m] = restCountry[i]; %>
-    <%    restCountry[i] = t; %>
+<div class="gameContainer">
+    <div class="gameTitle">
+        <h2>Demo Game</p>
+    </div>
+    <div class="displayNav">
+    <!-- need data to be an questionArray -->
+    <% function randomFlag(restCountry) { %>
+        <%  let m = restCountry.length, t, i; %>
+        <% while (m) { %>
+        <%    i = Math.floor(Math.random() * m--); %>
+        <%    t = restCountry[m]; %>
+        <%    restCountry[m] = restCountry[i]; %>
+        <%    restCountry[i] = t; %>
+        <% } %>
+        <% return restCountry; %>
     <% } %>
-    <% return restCountry; %>
-<% } %>
 
-<% function pickedCountry() { %>
-    <% let correctAnswer = Math.floor(Math.random() * restCountry.length) %>
-    <% let i = correctAnswer; %>
-    <% let sampleQuestion1 = Math.floor(Math.random() * restCountry.length) %>
-    <% let q1 = sampleQuestion1 %> 
-    <% let sampleQuestion2 = Math.floor(Math.random() * restCountry.length) %>
-    <% let q2 = sampleQuestion2 %>
-    <% let sampleQuestion3 = Math.floor(Math.random() * restCountry.length) %>
-    <% let q3 = sampleQuestion3 %>
-    <% let sampleQuestion4 = Math.floor(Math.random() * restCountry.length) %>
-    <% let q4 = sampleQuestion4 %>
-    <% let sampleQuestion5 = Math.floor(Math.random() * restCountry.length) %>
-    <% let q5 = sampleQuestion5 %>
-<!-- putting display override and set timer -->
-    <!-- modals  -->
-    <div id="myModal" class="modal">
+    <% function pickedCountry() { %>
+        <% let correctAnswer = Math.floor(Math.random() * restCountry.length) %>
+        <% let i = correctAnswer; %>
+        <% let sampleQuestion1 = Math.floor(Math.random() * restCountry.length) %>
+        <% let q1 = sampleQuestion1 %> 
+        <% let sampleQuestion2 = Math.floor(Math.random() * restCountry.length) %>
+        <% let q2 = sampleQuestion2 %>
+        <% let sampleQuestion3 = Math.floor(Math.random() * restCountry.length) %>
+        <% let q3 = sampleQuestion3 %>
+        <% let sampleQuestion4 = Math.floor(Math.random() * restCountry.length) %>
+        <% let q4 = sampleQuestion4 %>
+        <% let sampleQuestion5 = Math.floor(Math.random() * restCountry.length) %>
+        <% let q5 = sampleQuestion5 %>
+    <!-- putting display override and set timer -->
+        <!-- modals  -->
+        <div id="myModal" class="modal">
 
-        <!-- Modal content -->
-        <div class="modal-content">
-            <span class="close">&times;</span>
-            <p>Some text in the Modal..</p>
+            <!-- Modal content -->
+            <div class="modal-content">
+                <span class="close">&times;</span>
+                <p>Do you know the country name for this flag?</p>
+                <p>if you don't know, it's okay!</p>
+                <p>take a deep breath and have a guess!</p>
+                <p>close to start!</p>
+            </div>
+
         </div>
 
-    </div>
+        <!-- Set timer and initial score -->
+        <div class="round">
+            <p>this round is..</p>
+            <p id="thisRound"></p>
+        </div>
+    
+        <div class="timer">
+            <P> Seconds left</P>
+            <p id="timeLeft"></p>
+        </div>
 
-    <!-- Set timer and initial score -->
-    <div class="round">
-        <p>this round is..</p>
-        <p id="thisRound"></p>
-    </div>
-   
-    <div class="timer">
-        <P> Seconds left</P>
-        <p id="timeLeft"></p>
-    </div>
+        <div class="totalScore">
+            <p>points in total Round</p>
+            <p id="scoreTotalRound"></p>
+        </div>
 
-    <div class="totalScore">
-        <p>points in total Round</p>
-        <p id="scoreTotalRound"></p>
+        <div class="score">
+            <p>points in this Round</p>
+            <p id="scoreThisRound"></p>
+        </div>
     </div>
-
-    <div class="score">
-        <p>points in this Round</p>
-        <p id="scoreThisRound"></p>
-    </div>
-
 <!-- adding question image -->
     <div class="imagebox">
         <img id="imagequestion" src="/img/flagimages/<%= restCountry[i].alpha3Code %>.png">
@@ -113,28 +120,28 @@
 <% } %>
 <%= pickedCountry() %>
 
-<div id="modalAfterGame" class="modal">
-    <!-- Modal content -->
-    <div class="modal-content">
-        <form>
-        <p>This round is</p>
-        <input class="modalemptybox" id="currentRound" name="round" value=""></p> <!-- example -->
-        <p>your score in this round is</p>
-        <input class="modalemptybox" id="resultScore" name="score" value=""></p>
-        <p>your score in total is</p>
-        <input class="modalemptybox" id="resultTotalScore" name="endScore" value=""></p>
-        <input hidden name="userId" value="">
-        <input hidden name="streak" id="streakNum" value="">
-        <a href="/"><input type="button" id="modalHome" class="answerbox" value="Home"></a>
-            <!-- hidden , name = variable name,  -->
-            <!-- need to redirect to current page -->
-            <a href="/auth/signup">Sign Up</button></a>
-        </form>
-        <form>
-            
-            <p id="modalNext" class="answerbox" value="Sign Up">
-            <input type="submit" id="modalFin" class="answerbox" value="Result Page">
-        </form>
-    </div>
+    <div id="modalAfterGame" class="modal">
+        <!-- Modal content -->
+        <div class="modal-content">
+            <form>
+            <p>This round is</p>
+            <input class="modalemptybox" id="currentRound" name="round" value=""></p> <!-- example -->
+            <p>your score in this round is</p>
+            <input class="modalemptybox" id="resultScore" name="score" value=""></p>
+            <p>your score in total is</p>
+            <input class="modalemptybox" id="resultTotalScore" name="endScore" value=""></p>
+            <input hidden name="userId" value="">
+            <input hidden name="streak" id="streakNum" value="">
+            <a href="/"><input type="button" id="modalHome" class="answerbox" value="Home"></a>
+                <!-- hidden , name = variable name,  -->
+                <!-- need to redirect to current page -->
+                <div id="demosign"><a href="/auth/signup">Sign Up</button></a></div>
+            </form>
+            <form>
+                
+                <!-- <p id="modalNext" class="answerbox" value="Sign Up"> -->
+            </form>
+        </div>
 
+    </div>
 </div>

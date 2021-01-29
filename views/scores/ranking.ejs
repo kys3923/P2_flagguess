@@ -1,19 +1,20 @@
-<p> ranking page </p>
-<div class="divTable" style="border: 2px solid #000;">
-    <div class="divTableBody">
-        <div class="divTableRow">
-            <div class="divTableCell">User ID</div>
-            <div class="divTableCell">Total Score</div>
-            <div class="divTableCell">Round</div>
+<div class="rankingcontainer">
+    <h2> Rankings </h2>
+    <div class="divTable" style="border: 2px solid #990000;">
+        <div class="divTableBody">
+            <div class="divTableRow">
+                <div class="divTableCell"><strong>Name</strong></div>
+                <div class="divTableCell"><strong>Total Score</strong></div>
+                <div class="divTableCell"><strong>Round</strong></div>
+            </div>
+        <% scores.forEach(score => { %>
+            <div class="divTableRow">
+                <div class="divTableCell"><%= score.name %></div>
+                <div class="divTableCell"><%= score.endscore %></div>
+                <div class="divTableCell"><%= score.round %></div>
+            </div>
+            <% }) %>
         </div>
-    <% scores.forEach(score => { %>
-        <div class="divTableRow">
-            <div class="divTableCell"><%= score.name %></div>
-            <div class="divTableCell"><%= score.endscore %></div>
-            <div class="divTableCell"><%= score.round %></div>
-        </div>
-        <% }) %>
     </div>
 </div>
-<!-- rank number, name, score -->
-<!-- add comments below -->
+

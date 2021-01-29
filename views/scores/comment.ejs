@@ -1,22 +1,27 @@
-<p>comment page</p>
+<div class="commentStyle">
+    <h2>Leave your comment to Flagguess!</h2>
+</div>
+<div class="commentStyle2">
+    <ul class="comment-section">
+        <li class="write-new">
+            <form action="/scores/comment" method="POST">
+                <textarea placeholder="Write your comment here" name="comment" required></textarea>
+                <div>
+                    <input type="button" hidden name="name" value="">
+                    <input type="button" hidden name="userId" value="">
+                    <button type="submit">Submit</button>
+                </div>
+            </form>
+        </li>
+        <% foundComment.forEach(comment => { %>
+            <li class="comment user-comment">
+                <div class="info">
+                    <p><strong><%= comment.name %></strong></p>
+                    <span><%= comment.upodatedAt %></span>
+                </div>
+                <p><%= comment.comment %></p>
+            </li>
+        <% }) %> 
 
-<!-- creating a post -->
-
-<form action="/scores/comment" method="POST">
-    <div class="form-group">
-      <label for="content">Content</label>
-      <textarea type="text" class="form-control" id="content" name="comment" required></textarea>
-    </div>
-    <input type="button" hidden name="name" value="">
-    <input type="button" hidden name="userId" value="">
-    <input type="submit" class="btn btn-primary">
-  </form>
-
-  <!-- comments -->
-<div class="commentbox">
-    <% foundComment.forEach(comment => { %>
-        <div class="commentbox2"><p id="commentContent"><%= comment.comment %></p></div>
-        <p id="commentName">from <stong><%= comment.name %></stong>
-    <span class="dateCreated"><%= comment.updatedAt %></span></p>
-    <% }) %>
- </div>
+    </ul>
+</div>

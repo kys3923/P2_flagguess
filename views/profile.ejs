@@ -1,16 +1,22 @@
-<h2>Profile Page</h2>
-
-<h3>Welcome to your PROFILE ========= <%= currentUser.name %></h3>
-
-<div id="profileBox">
-    <ul id="userStat">
-        <li>Highest Score:</li>
-        <li>Average Score:</li>
-    </ul>
+<div class="rankingcontainer">
+    <h2> This is your records, <%= currentUser.name %> ! </h2>
+    <div class="divTable" style="border: 2px solid #990000;">
+        <div class="divTableBody">
+            <div class="divTableRow">
+                <div class="divTableCell"><strong>Name</strong></div>
+                <div class="divTableCell"><strong>Total Score</strong></div>
+                <div class="divTableCell"><strong>Round</strong></div>
+                <div class="divTableCell"><strong>Date</strong></div>
+            </div>
+        <% foundID.forEach(score => { %>
+            <div class="divTableRow">
+                <div class="divTableCell"><%= score.name %></div>
+                <div class="divTableCell"><%= score.endscore %></div>
+                <div class="divTableCell"><%= score.round %></div>
+                <div class="divTableCell"><%= score.createdAt %></div>
+            </div>
+            <% }) %>
+        </div>
+    </div>
 </div>
-<% foundID.forEach(score => { %>
-    <p><%= score.userId %></p>
-    <p><%= score.endscore %></p>
-    <p><%= score.round %></p>
-    <p><%= score.createdAt %></p>
-<% }) %>
+

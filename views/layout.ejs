@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+  <div id="loader" class="center"></div> 
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -8,23 +9,27 @@
     <script src="/js/loading.js" defer></script>
   </head>
   <body>
-    <header>
-      <div id="loader" class="center"></div> 
-     
-      <nav>
-        <ul>
-          <li><a href="/">Logo here</a></li>
-          <% if (currentUser)  { %>
-            <li><a href="/auth/logout">Logout</a></li>
-            <li><a href="/profile">Profile</a></li>
-            <% } else { %>
-              <li><a href="/auth/signup">Signup</a></li>
-              <li><a href="/auth/login">Login</a></li>
-            <% } %>
-          
-        </ul>
-      </nav>
+    <header class="main-header">
+      <div class="headercontainer">
+          <h1 class="mh-logo">
+            <img src="/img/logo.png">
+          </h1>
+        <nav class="main-nav">
+          <ul class="main-nav-list">
+            <% if (currentUser)  { %>
+              <li><a href="/">home</a></li>
+              <li><a href="/auth/logout">Logout</a></li>
+              <li><a href="/profile">Record</a></li>
+              <% } else { %>
+                <li><a href="/">home</a></li>
+                <li><a href="/auth/signup">Signup</a></li>
+                <li><a href="/auth/login">Login</a></li>
+              <% } %>
+          </ul>
+        </nav>
+      </div>
     </header>
+    
     <%- include('./partials/alerts.ejs') %>
     <%- body %>
   
