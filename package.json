@@ -26,7 +26,8 @@
     "passport": "^0.4.1",
     "passport-local": "^1.0.0",
     "pg": "^8.5.1",
-    "sequelize": "^6.4.0"
+    "sequelize": "^6.4.0",
+    "sequelize-cli": "^6.2.0"
   },
   "description": "When it comes to recognize a flag of a country, it could be confusing enough humiliating at the moment you don't want to show your common knowledge. With this website, user can spend a little of their time, and improve recognizing a country from a flag.",
   "directories": {
