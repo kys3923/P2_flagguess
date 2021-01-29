@@ -17,6 +17,7 @@ module.exports = (sequelize, DataTypes) => {
   };
   score.init({
     userId: DataTypes.INTEGER,
+    name: DataTypes.STRING,
     q10score: DataTypes.INTEGER,
     endscore: DataTypes.INTEGER,
     streak: DataTypes.INTEGER,

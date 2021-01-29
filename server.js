@@ -9,6 +9,7 @@ const isLoggedIn = require('./middleware/isLoggedIn');
 const axios = require('axios');
 const path = require('path');
 const db = require('./models');
+const { sequelize } = require('./models');
 const app = express();
 
 app.set('view engine', 'ejs');
@@ -52,8 +53,16 @@ app.get('/', (req, res) => {
 });
 
 app.get('/profile', isLoggedIn, (req, res) => {
-  console.log(req.session.testVar);
-  res.render('profile');
+  console.log(req.user.dataValues.id, 'why why why????????????????????')
+  db.score.findAll({
+    where: {
+      userId: req.user.dataValues.id,
+    },
+    order: [['updatedAt', 'DESC']]
+  }).then(foundID => {
+    console.log(foundID, "foundID ===============================")
+    res.render('profile', {foundID});
+  }).catch(err => console.log(err))
 });
 
 app.use('/auth', require('./routes/auth'));

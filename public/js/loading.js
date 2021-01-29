@@ -28,7 +28,6 @@ let modalAfter = document.getElementById('modalAfterGame');
 let resultScore = document.querySelector('#resultScore').innerText;
 
 let nextButton = document.querySelector('#modalNext');
-let finButton = document.querySelector('#modalFin');
 
 
 let wrongAnswerInput = document.querySelectorAll('#wronganswer');
@@ -132,10 +131,8 @@ function review() {
     modalAfter.style.display = 'block'
     if (gameRound < 10) {
         nextButton.style.display = 'block';
-        finButton.style.display = 'none';
     } else if (gameRound == 10) {
         nextButton.style.display = 'none';
-        finButton.style.display = 'block';
     }
 };
 
@@ -165,6 +162,7 @@ let homeButton = document.querySelector('#modalHome');
 homeButton.addEventListener('click', clear => {
     myStorage.clear();
 })
+
 
 // let signupButton = document.querySelector('#signup');
 // signupButton.addEventListener('click', e => {

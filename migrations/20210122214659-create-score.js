@@ -20,6 +20,9 @@ module.exports = {
       streak: {
         type: Sequelize.INTEGER
       },
+      name: {
+        type: Sequelize.STRING
+      },
       round: {
         type: Sequelize.INTEGER
       },

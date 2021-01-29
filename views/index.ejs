@@ -18,18 +18,35 @@
 
         </div>
 
-        <div class="selectgamebox">
+        <div class="indexSelect">
             <p><a href="games/demo">demo game</a></p>
         </div>
+        <div class="indexSelect" id="disableBox">
+            <p><a href="games/10q">10 Questions</a></p>
+        </div>
+        <div class="indexSelect" id="disabaleBox">
+            <p><a href="scores/ranking/">Top 10 Ranking</a></p>
+        </div>
+    <% } else { %>
+        <% let i = Math.floor(Math.random() * restCountry.length) %>
+        
+        <div class="imagebox">
+            <img id="imagequestion" src="/img/flagimages/<%= restCountry[i].alpha3Code %>.png">
+        </div>
+        <div class="countryinfo">
+            <p>name: <%= restCountry[i].name %></p>
+            <p>capital: <%= restCountry[i].capital %></p>
+            <p>region: <%= restCountry[i].region %> - <%= restCountry[i].subregion %></p>
+            <p>population: <%= restCountry[i].population %></p>
+            <p>Native Name: <%= restCountry[i].nativeName %></p>
+
+        </div>
         <div class="10Qbox">
             <p><a href="games/10q">10 Questions</a></p>
         </div>
-        <!-- <div class="enduranceBox">
-            <p><a href="games/">Endurance</a></p>
-        </div> -->
-    <% } else { %>
-        <div class="10Qbox">
-            <p><a href="games/10q">10 Questions</a></p>
+        
+        <div class="indexSelect">
+            <p><a href="scores/ranking/">Top 10</a></p>
         </div>
         <!-- <div class="enduranceBox">
             <p><a href="games/endurance">Endurance</a></p>

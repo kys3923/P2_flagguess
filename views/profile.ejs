@@ -8,3 +8,9 @@
         <li>Average Score:</li>
     </ul>
 </div>
+<% foundID.forEach(score => { %>
+    <p><%= score.userId %></p>
+    <p><%= score.endscore %></p>
+    <p><%= score.round %></p>
+    <p><%= score.createdAt %></p>
+<% }) %>

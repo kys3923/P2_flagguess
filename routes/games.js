@@ -29,14 +29,15 @@ router.post('/signup', (req, res) => {
 });
 
 router.post('/score', isLoggedIn, (req, res) => {
-    console.log(typeof req.user.dataValues.id, "============== currentUser")
+    console.log(req.user.dataValues.name, "============== currentUser")
     db.score.findOrCreate({
         where: {
             round: req.body.round,
             q10score: req.body.score,
             endscore: req.body.endScore,
             streak: req.body.streak,
-            userId: req.user.dataValues.id
+            userId: req.user.dataValues.id,
+            name: req.user.dataValues.name
         }
     }).then(score => {
         res.redirect('/games/10q')
